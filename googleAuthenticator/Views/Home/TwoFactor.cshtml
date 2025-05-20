@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Two Factor Verification";
+}
+<h2>Scan QR and Verify Code</h2>
+<img src="@Session["QrCode"]" width="200" />
+<p>Manual Code: <strong>@Session["ManualKey"]</strong></p>
+
+@using (Html.BeginForm())
+{
+    <label>Enter Code:</label>
+    <input type="text" name="code" />
+    <input type="submit" value="Verify" />
+}
+@if (ViewBag.Error != null)
+{
+    <p style="color:red;">@ViewBag.Error</p>
+}

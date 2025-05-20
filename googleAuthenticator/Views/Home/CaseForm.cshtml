@@ -1,0 +1,40 @@
+﻿@model googleAuthenticator.Models.CaseInputModel
+
+@{
+    ViewBag.Title = "Case Form";
+}
+
+<h2>Check Criminal Case Sensitivity</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Case Number:</label>
+        @Html.TextBoxFor(m => m.CaseNumber)
+    </div>
+    <div>
+        <label>Informant ID:</label>
+        @Html.TextBoxFor(m => m.InformantID)
+    </div>
+    <div>
+        <label>Police Badge ID:</label>
+        @Html.TextBoxFor(m => m.PoliceBadgeID)
+    </div>
+    <div>
+        <label>Protected Address:</label>
+        @Html.TextBoxFor(m => m.ProtectedAddress)
+    </div>
+    <br />
+    <input type="submit" value="Check Sensitivity" class="btn btn-primary" />
+}
+
+@if (ViewBag.Result != null)
+{
+    <h3>Results:</h3>
+    <ul>
+        @foreach (var item in ViewBag.Result)
+        {
+            <li><strong>@item.FieldName</strong>: @item.Status</li>
+        }
+    </ul>
+}
